@@ -1,12 +1,44 @@
-import { use, useState } from "react";
+import { useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const Hero = () => {
   const [curVideoIndex, setCurVideoIndex] = useState(1);
+  const [isClicked, setIsClicked] = useState(false);
   const nextVideoIndex = curVideoIndex + 1;
   const TOTAL_VIDEOS = 4;
+  const nextVideoRef = useRef(null);
+
+  useGSAP(
+    () => {
+      if (isClicked) {
+        gsap.set("#next-video", { opacity: "1" });
+        gsap.to("#next-video", {
+          transformOrigin: "center center",
+          width: "100vw",
+          height: "100vh",
+          duration: 1,
+          ease: "power1.inOut",
+          onStart: nextVideoRef.current.play(),
+        });
+        gsap.to("#current-video", {
+          opacity: 100,
+          transformOrigin: "center center",
+          scale: 1,
+          duration: 1,
+          ease: "power1.inOut",
+        });
+      }
+    },
+    {
+      dependencies: [curVideoIndex],
+      revertOnUpdate: true,
+    }
+  );
 
   const handleClickVideoMini = () => {
     setCurVideoIndex((prev) => (prev += 1));
+    setIsClicked(true);
   };
 
   const computeVideoPath = (index) => {
@@ -14,26 +46,41 @@ const Hero = () => {
   };
 
   return (
-    <section className='bg-orange-500 h-dvh relative'>
-      <div className='h-dvh w-screen bg-blue-300 relative'>
-        <div id='big-video-container'>
-          <video src={computeVideoPath(curVideoIndex)} autoPlay loop muted />
-        </div>
+    <section className='h-dvh'>
+      <div className='h-dvh w-screen bg-blue-75 relative'>
+        {/* Initial Video */}
+        <video
+          src={computeVideoPath(curVideoIndex - 1)}
+          autoPlay
+          loop
+          muted
+          className='size-full object-cover object-center'
+        />
 
-        <div className='relative'>
-          <div
-            id='minVideoContainer'
-            className='absolute-center z-10 h-36 w-36 aspect-square overflow-hidden cursor-pointer
-        '
-          >
-            <video
-              src={computeVideoPath(nextVideoIndex)}
-              muted
-              className='origin-center scale-150 object-cover object-center h-full'
-              onClick={handleClickVideoMini}
-            />
-          </div>
+        {/* Main video */}
+        <div
+          className='absolute-center h-dvh w-screen overflow-hidden z-20 opacity-0 scale-50'
+          id='current-video'
+        >
+          <video
+            id='current-video'
+            ref={nextVideoRef}
+            loop
+            src={computeVideoPath(curVideoIndex)}
+            className='object-center object-cover size-full'
+          />
         </div>
+      </div>
+      {/* Mini Video */}
+      <div
+        className='overflow-hidden rounded-xl cursor-pointer absolute-center z-20 opacity-0 scale-50 hover:scale-100 hover:opacity-100 transition-all duration-500 size-48'
+        onClick={handleClickVideoMini}
+      >
+        <video
+          src={computeVideoPath(nextVideoIndex)}
+          muted
+          className='origin-center object-cover object-center size-full rounded-xl'
+        />
       </div>
     </section>
   );
