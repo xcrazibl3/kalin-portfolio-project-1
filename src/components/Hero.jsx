@@ -1,14 +1,20 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 const Hero = () => {
   const [curVideoIndex, setCurVideoIndex] = useState(1);
   const [isClicked, setIsClicked] = useState(false);
-  const nextVideoIndex = curVideoIndex + 1;
+  const [loadedVideos, setLoadedVideos] = useState(0);
+  const [hasLoaded, setHasLoaded] = useState(false);
   const TOTAL_VIDEOS = 4;
   const nextVideoRef = useRef(null);
 
+  useEffect(() => {
+    if (loadedVideos >= TOTAL_VIDEOS - 1) {
+      setHasLoaded(true);
+    }
+  }, [loadedVideos]);
   useGSAP(
     () => {
       if (isClicked) {
@@ -41,12 +47,23 @@ const Hero = () => {
     setIsClicked(true);
   };
 
+  const handleLoad = () => {
+    setLoadedVideos((prev) => (prev += 1));
+  };
+
   const computeVideoPath = (index) => {
     return `/videos/hero-${(index % TOTAL_VIDEOS) + 1}.mp4`;
   };
 
   return (
     <section className='h-dvh'>
+      {hasLoaded || (
+        <div className='three-body z-50'>
+          <div className='three-body__dot'></div>
+          <div className='three-body__dot'></div>
+          <div className='three-body__dot'></div>
+        </div>
+      )}
       <div className='h-dvh w-screen bg-blue-75 relative'>
         {/* Initial Video */}
         <video
@@ -55,6 +72,7 @@ const Hero = () => {
           loop
           muted
           className='size-full object-cover object-center'
+          onLoad={handleLoad}
         />
 
         {/* Main video */}
@@ -68,6 +86,7 @@ const Hero = () => {
             loop
             src={computeVideoPath(curVideoIndex)}
             className='object-center object-cover size-full'
+            onLoad={handleLoad}
           />
         </div>
       </div>
@@ -77,9 +96,10 @@ const Hero = () => {
         onClick={handleClickVideoMini}
       >
         <video
-          src={computeVideoPath(nextVideoIndex)}
+          src={computeVideoPath(curVideoIndex + 1)}
           muted
           className='origin-center object-cover object-center size-full rounded-xl'
+          onLoad={handleLoad}
         />
       </div>
     </section>
