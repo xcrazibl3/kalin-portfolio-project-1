@@ -4,6 +4,7 @@ const App = () => {
   return (
     <main className='min-h-dvh w-screen'>
       <Hero />
+      <section className='bg-blue-75 h-dvh'></section>
     </main>
   );
 };
