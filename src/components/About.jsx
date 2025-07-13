@@ -4,19 +4,22 @@ import gsap from "gsap";
 import { useRef } from "react";
 
 const About = () => {
-  const aboutImageRef = useRef(null);
+  const imageContainerRef = useRef(null);
 
   useGSAP(() => {
-    gsap.to(aboutImageRef.current, {
+    gsap.to(imageContainerRef.current, {
       width: "100vw",
-      height: "120dvh",
+      height: "100vh",
       borderRadius: 0,
+      // transformOrigin: "center center",
       scrollTrigger: {
-        trigger: "about-image",
-        start: "top bottom",
-        end: "top top",
+        trigger: imageContainerRef.current,
+        start: "top top",
+        end: "+=800 center",
         scrub: 1,
         pin: true,
+        pinSpacing: true,
+        markers: true,
       },
     });
   }, []);
@@ -30,12 +33,13 @@ const About = () => {
       />
 
       <div className='w-screen h-dvh relative mt-12'>
-        <div className='about-image' ref={aboutImageRef}>
-          <img
-            src='/img/about.webp'
-            className='size-full object-cover object-center rounded-none'
-          />
+        <div
+          className='absolute-center overflow-hidden z-20 h-[60vh] min-w-96 rounded-3xl imgContainer'
+          ref={imageContainerRef}
+        >
+          <img src='/img/about.webp' className='object-cover  size-full' />
         </div>
+
         <p className='about-subtext'>
           Zentry unites every player from countless games and platforms
         </p>
