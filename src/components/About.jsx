@@ -11,7 +11,6 @@ const About = () => {
       width: "100vw",
       height: "100vh",
       borderRadius: 0,
-      // transformOrigin: "center center",
       scrollTrigger: {
         trigger: imageContainerRef.current,
         start: "top top",
@@ -19,7 +18,6 @@ const About = () => {
         scrub: 1,
         pin: true,
         pinSpacing: true,
-        markers: true,
       },
     });
   }, []);
@@ -41,7 +39,8 @@ const About = () => {
         </div>
 
         <p className='about-subtext'>
-          Zentry unites every player from countless games and platforms
+          The game of Games begins- your life, now an epic MMORPG <br /> Zentry
+          unites every player from countless games and platforms
         </p>
       </div>
     </section>
