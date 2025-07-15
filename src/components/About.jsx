@@ -5,17 +5,19 @@ import { useRef } from "react";
 
 const About = () => {
   const imageContainerRef = useRef(null);
+  const animationTarget = useRef(null);
 
   useGSAP(() => {
     gsap.to(imageContainerRef.current, {
       width: "100vw",
-      height: "100vh",
+      height: "100%",
       borderRadius: 0,
+      transformOrigin: "center center",
       scrollTrigger: {
-        trigger: imageContainerRef.current,
+        trigger: animationTarget.current,
         start: "top top",
-        end: "+=800 center",
-        scrub: 1,
+        end: "bottom top",
+        scrub: 0.5,
         pin: true,
         pinSpacing: true,
       },
@@ -23,19 +25,25 @@ const About = () => {
   }, []);
 
   return (
-    <section className='py-40 min-h-screen w-screen'>
+    <section className='mt-40 min-h-screen w-screen'>
       <h2 className='text-center'>Welcome to Zentry</h2>
       <AnimatedTitle
         title="Disc<b>o</b>ver the world's <br/> largest shared <b>a</b>dventure"
         containerStyles='special-font text-center mt-20 uppercase'
       />
 
-      <div className='w-screen h-dvh relative mt-12'>
+      <div
+        className='w-screen h-[100vh] mt-12 flex justify-center bg-blue-75'
+        ref={animationTarget}
+      >
         <div
-          className='absolute-center overflow-hidden z-20 h-[60vh] min-w-96 rounded-3xl imgContainer'
+          className='overflow-hidden h-[60vh] min-w-96 rounded-3xl imgContainer relative z-20'
           ref={imageContainerRef}
         >
-          <img src='/img/about.webp' className='object-cover  size-full' />
+          <img
+            src='/img/about.webp'
+            className='object-cover object-center size-full absolute top-0 left-0'
+          />
         </div>
 
         <p className='about-subtext'>

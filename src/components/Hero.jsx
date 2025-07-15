@@ -41,27 +41,9 @@ const Hero = () => {
     }
   );
 
-  // useGSAP(() => {
-  //   gsap.set("#animation-section-wrapper", {
-  //     clipPath: "polygon(10% 0, 89% 0, 95% 90%, 0 100%)",
-  //     borderRadius: "0% 0% 40% 10%",
-  //   });
-  //   gsap.from("#animation-section-wrapper", {
-  //     clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
-  //     borderRadius: "0% 0% 0% 0%",
-  //     ease: "power1.inOut",
-  //     scrollTrigger: {
-  //       trigger: "#animation-section-wrapper",
-  //       start: "center center",
-  //       end: "bottom center",
-  //       scrub: true,
-  //     },
-  //   });
-  // });
-
   useGSAP(() => {
     gsap.set("#animation-section-wrapper", {
-      clipPath: "polygon(10% 0, 89% 0, 95% 90%, 0 95%)",
+      clipPath: "polygon(10% 0, 80% 0, 90% 88%, 0 95%)",
       borderRadius: "0% 0% 40% 10%",
     });
     gsap.from("#animation-section-wrapper", {
