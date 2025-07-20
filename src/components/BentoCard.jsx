@@ -40,14 +40,13 @@ const BentoCard = ({ card }) => {
 
   return (
     <div
-      className='perspective-1000'
+      className={clsx("perspective-1000", outStyles)}
       onMouseMove={(e) => handleMouseMove(e)}
       onMouseLeave={() => handleMouseLeave()}
     >
       <div
         className={clsx(
-          "flex flex-col justify-between p-5 size-full text-blue-50 border-hsla rounded-lg border-2 relative overflow-hidden min-h-96 md:min-h-64",
-          outStyles
+          "flex flex-col justify-between p-5 size-full text-blue-50 border-hsla rounded-lg border-2 relative overflow-hidden min-h-96 md:min-h-64"
         )}
         style={{
           transform: `rotateX(${mouseCoords.rotateX}deg) rotateY(${mouseCoords.rotateY}deg)`,
