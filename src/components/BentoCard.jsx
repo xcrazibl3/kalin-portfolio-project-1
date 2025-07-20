@@ -72,7 +72,8 @@ const BentoCard = ({ card }) => {
           glow={true}
           title={buttonTitle}
           leftIcon={<TiLocationArrow />}
-          containerClass='flex gap-x-1 items-center border-hsla rounded-full px-4 py-1.5 text-xs text-white/20 bg-gray-950'
+          containerClass='flex gap-x-1 items-center border-hsla rounded-full px-4 py-1.5 text-xs text-white/20'
+          bgColor='bg-black'
         />
       </div>
     </div>
