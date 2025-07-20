@@ -58,7 +58,7 @@ const BentoCard = ({ card }) => {
           autoPlay
           loop
           muted
-          className='absolute top-0 left-0 size-full object-cover object-center'
+          className='absolute top-0 left-0 size-full object-cover object-center bg-violet-300'
         />
         <div className='flex flex-col gap-y-5 z-20'>
           <h2
