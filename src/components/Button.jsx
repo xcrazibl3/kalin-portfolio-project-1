@@ -8,6 +8,7 @@ const Button = ({
   leftIcon,
   containerClass,
   glow = false,
+  bgColor = "bg-black",
 }) => {
   const [isShadowVisible, setIsShadowVisible] = useState(glow);
   const [mouseCoords, setMouseCoords] = useState({ x: 0, y: 0 });
@@ -21,7 +22,7 @@ const Button = ({
     <button
       id={id}
       className={clsx(
-        "group relative z-10 w-fit cursor-pointer overflow-hidden rounded-full bg-violet-50 px-7 py-3 text-black",
+        `group relative z-10 w-fit cursor-pointer overflow-hidden rounded-full ${bgColor} px-7 py-3 text-black`,
         containerClass
       )}
       onMouseMove={(e) => handleMouseMove(e)}
