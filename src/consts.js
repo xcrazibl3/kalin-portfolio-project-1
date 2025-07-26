@@ -33,7 +33,6 @@ const bentoGridList = [
   },
   {
     title: "M<b>o</b>re co<b>m</b>ing s<b>o</b>on",
-    bgSrc: "",
     outStyles: "col-span-1",
   },
   {
