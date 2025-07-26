@@ -8,7 +8,7 @@ const Button = ({
   leftIcon,
   containerClass,
   glow = false,
-  bgColor = "bg-black",
+  bgColor = "bg-violet-50",
 }) => {
   const [isShadowVisible, setIsShadowVisible] = useState(glow);
   const [mouseCoords, setMouseCoords] = useState({ x: 0, y: 0 });
