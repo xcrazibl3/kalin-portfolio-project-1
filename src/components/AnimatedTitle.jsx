@@ -1,10 +1,17 @@
 import clsx from "clsx";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 
-const AnimatedTitle = ({ title, containerStyles }) => {
+const AnimatedTitle = ({
+  title,
+  containerStyles,
+  titleColor = "text-black",
+}) => {
+  const titleRef = useRef(null);
+  const wordRefs = useRef([]);
   useGSAP(() => {
-    gsap.to(".animated-word", {
+    gsap.to(wordRefs.current, {
       opacity: 1,
       translateX: 0,
       translateY: 0,
@@ -13,7 +20,7 @@ const AnimatedTitle = ({ title, containerStyles }) => {
       rotateX: 0,
       stagger: 0.1,
       scrollTrigger: {
-        trigger: ".animated-title",
+        trigger: titleRef.current,
         scrub: 1,
         start: "top bottom",
         end: "+=200",
@@ -22,7 +29,7 @@ const AnimatedTitle = ({ title, containerStyles }) => {
   }, []);
 
   return (
-    <h2 className={clsx("animated-title", containerStyles)}>
+    <h2 className={clsx("animated-title", containerStyles)} ref={titleRef}>
       {title.split("<br/>").map((line, index) => (
         <div
           className='flex-center max-w-full flex-wrap gap-2 px-10 md:gap-3'
@@ -31,11 +38,10 @@ const AnimatedTitle = ({ title, containerStyles }) => {
           {line.split(" ").map((word, index) => (
             <span
               key={index}
-              className='animated-word special-font text-black'
+              ref={(el) => wordRefs.current.push(el)}
+              className={clsx("animated-word text-black", titleColor)}
               dangerouslySetInnerHTML={{ __html: word }}
-            >
-              {/* {word} */}
-            </span>
+            ></span>
           ))}
         </div>
       ))}

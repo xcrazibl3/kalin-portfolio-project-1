@@ -56,9 +56,3 @@ const About = () => {
 };
 
 export default About;
-
-//  Disc<b>o</b>ver the world's
-//         <br /> largest shared <b>a</b>dventure
-
-// The game of Games begins-your life,now an epic MMORPG
-// Zentry unites every player from countless games and platforms
