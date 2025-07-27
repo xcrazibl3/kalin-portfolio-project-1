@@ -37,7 +37,7 @@ const About = () => {
         ref={animationTarget}
       >
         <div
-          className='overflow-hidden h-[60vh] min-w-96 rounded-3xl imgContainer relative z-20'
+          className='overflow-hidden h-[60vh] min-w-96 rounded-3xl img-container relative z-20'
           ref={imageContainerRef}
         >
           <img
