@@ -3,7 +3,10 @@ import Button from "./Button";
 
 const Contact = () => {
   return (
-    <section className='md:mt-0 sm:mt-32 mt-10 py-20 px-10 min-h-[100vh]'>
+    <section
+      className='md:mt-0 sm:mt-32 mt-10 py-20 px-10 min-h-[100vh]'
+      id='contact'
+    >
       <div className='bg-black rounded-xl h-full w-full relative py-24'>
         <div className='overflow-hidden h-full w-full absolute inset-0'>
           <div className='hidden sm:block contact-clip-path-1 absolute top-0 md:left-10 -left-10 w-72 '>

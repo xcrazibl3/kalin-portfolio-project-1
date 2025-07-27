@@ -5,12 +5,14 @@ import Hero from "./components/Hero";
 import Story from "./components/Story";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Nav from "./components/Nav";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const App = () => {
   return (
-    <main className='min-h-dvh w-screen'>
+    <main className='min-h-dvh w-screen relative'>
+      <Nav />
       <Hero />
       <About />
       <Features />

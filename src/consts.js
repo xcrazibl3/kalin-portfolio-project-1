@@ -41,4 +41,27 @@ const bentoGridList = [
   },
 ];
 
-export { bentoGridList };
+const navItemsList = [
+  {
+    name: "Nexus",
+    href: "/#hero",
+  },
+  {
+    name: "Vault",
+    href: "/#hero",
+  },
+  {
+    name: "Prolouge",
+    href: "/#hero",
+  },
+  {
+    name: "About",
+    href: "/#about",
+  },
+  {
+    name: "Contact",
+    href: "/#contact",
+  },
+];
+
+export { bentoGridList, navItemsList };

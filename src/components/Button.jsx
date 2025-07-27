@@ -18,6 +18,15 @@ const Button = ({
     setMouseCoords({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
 
+  const handleMouseEnter = () => {
+    if (!glow) return;
+    setIsShadowVisible(true);
+  };
+  const handleMouseLeave = () => {
+    if (!glow) return;
+    setIsShadowVisible(false);
+  };
+
   return (
     <button
       id={id}
@@ -26,8 +35,8 @@ const Button = ({
         containerClass
       )}
       onMouseMove={(e) => handleMouseMove(e)}
-      onMouseEnter={() => setIsShadowVisible(true)}
-      onMouseLeave={() => setIsShadowVisible(false)}
+      onMouseEnter={() => handleMouseEnter()}
+      onMouseLeave={() => handleMouseLeave()}
     >
       {leftIcon}
 
