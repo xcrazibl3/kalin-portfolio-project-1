@@ -1,4 +1,5 @@
 import About from "./components/About";
+import Contact from "./components/Contact";
 import Features from "./components/Features";
 import Hero from "./components/Hero";
 import Story from "./components/Story";
@@ -14,7 +15,7 @@ const App = () => {
       <About />
       <Features />
       <Story />
-      <section className='bg-blue-75 h-dvh'></section>
+      <Contact />
     </main>
   );
 };
