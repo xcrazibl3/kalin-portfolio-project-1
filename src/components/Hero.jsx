@@ -73,7 +73,7 @@ const Hero = () => {
   };
 
   return (
-    <section className='h-dvh bg-blue-75'>
+    <section className='h-dvh bg-blue-75' id='hero'>
       {hasLoaded || (
         <div className='flex items-center bg-blue-75 justify-center absolute h-full w-screen top-0 right-0 z-[100]'>
           <div className='three-body z-50'>

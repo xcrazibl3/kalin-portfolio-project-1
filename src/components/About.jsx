@@ -25,7 +25,7 @@ const About = () => {
   }, []);
 
   return (
-    <section className='mt-40 min-h-screen w-screen'>
+    <section className='mt-40 min-h-screen w-screen' id='about'>
       <h2 className='text-center'>Welcome to Zentry</h2>
       <AnimatedTitle
         title="Disc<b>o</b>ver the world's <br/> largest shared <b>a</b>dventure"
