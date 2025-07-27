@@ -12,6 +12,16 @@ const Story = () => {
           titleColor='text-white'
           containerStyles='mt-5'
         />
+        {/* Image container */}
+        <div className='flex-center h-screen w-screen relative'>
+          {/* Img Wrapper */}
+          <div className='size-full clip-path-story w-9/12'>
+            <img
+              className='object-cover object-center'
+              src='/img/entrance.webp'
+            />
+          </div>
+        </div>
       </div>
     </section>
   );
