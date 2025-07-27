@@ -48,6 +48,15 @@ body {
     clip-path: polygon(4% 0, 83% 21%, 100% 73%, 0% 100%);
   }
 
+  .filter-story {
+    filter: url(#flt_tag);
+  }
+
+  .container-transform-story {
+    transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(5deg)
+      scale(1);
+  }
+
   .border-hsla {
     @apply border border-white/20;
   }

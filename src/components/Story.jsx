@@ -1,4 +1,6 @@
 import AnimatedTitle from "./AnimatedTitle";
+import TiltWrapper from "./TiltWrapper";
+import SVGMask from "./SVGMask";
 
 const Story = () => {
   return (
@@ -10,18 +12,19 @@ const Story = () => {
         <AnimatedTitle
           title='the st<b>o</b>ry of<br/> a hidden real<b>m</b>'
           titleColor='text-white'
-          containerStyles='mt-5'
+          containerStyles='mt-5 mix-blend-difference z-20'
         />
         {/* Image container */}
-        <div className='flex-center h-screen w-screen relative'>
-          {/* Img Wrapper */}
-          <div className='size-full clip-path-story w-9/12'>
-            <img
-              className='object-cover object-center'
-              src='/img/entrance.webp'
-            />
-          </div>
-        </div>
+        <TiltWrapper
+          wrapperStyles='flex-center h-[500px] w-screen relative -mt-16 filter-story container-transform-story'
+          cardStyles='size-full clip-path-story w-8/12 overflow-hidden'
+        >
+          <img
+            className='object-cover object-center scale-150'
+            src='/img/entrance.webp'
+          />
+          <SVGMask />
+        </TiltWrapper>
       </div>
     </section>
   );
