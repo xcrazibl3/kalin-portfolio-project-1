@@ -1,6 +1,6 @@
 import Button from "./Button";
 import { navItemsList } from "../consts";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
@@ -13,8 +13,9 @@ const Nav = () => {
         </div>
         <Button title='products' containerClass='text-xs' />
       </div>
-      <div className='mr-5 flex gap-x-8 items-center'>
-        <ul className='flex gap-x-8'>
+      <div className='mr-5 flex gap-x-12 items-center'>
+        <Hamburger />
+        <ul className='hidden md:flex gap-x-12'>
           {navItemsList.map((navLink) => (
             <NavLink navItem={navLink} key={navLink.name} />
           ))}
@@ -88,6 +89,48 @@ const MusicBar = () => {
         ></div>
       ))}
       <audio src='/audio/loop.mp3' ref={audioRef} loop className='hidden' />
+    </div>
+  );
+};
+
+const Hamburger = () => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const hamburgerMenuRef = useRef(null);
+
+  const handleClickOutside = (e) => {
+    console.log(e.target);
+    if (
+      hamburgerMenuRef.current &&
+      !hamburgerMenuRef.current.contains(e.target)
+    )
+      setIsNavOpen(false);
+  };
+
+  useEffect(() => {
+    if (isNavOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isNavOpen]);
+
+  return (
+    <div
+      className='block md:hidden size-8 cursor-pointer relative'
+      onClick={() => setIsNavOpen((prev) => !prev)}
+      ref={hamburgerMenuRef}
+    >
+      <img src='/img/hamburger-menu.svg' className='size-full' />
+      {isNavOpen && (
+        <div className='absolute left-0 -translate-x-1/2'>
+          <ul className='flex flex-col justify-center gap-y-4 bg-black/40 backdrop-blur-md p-4 px-6'>
+            {navItemsList.map((navLink) => (
+              <NavLink navItem={navLink} key={navLink.name} />
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
