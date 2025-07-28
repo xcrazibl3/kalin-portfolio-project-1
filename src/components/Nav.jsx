@@ -3,6 +3,7 @@ import { navItemsList } from "../consts";
 import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Nav = () => {
   const [curScroll, setCurScroll] = useState(0);
@@ -92,9 +93,6 @@ const Nav = () => {
             <NavLink navItem={navLink} key={navLink.name} />
           ))}
         </ul>
-        {/* <div className='flex font-general items-center uppercase h-[15px] text-[12px]'>
-          play
-        </div> */}
         <MusicBar />
       </div>
     </nav>
@@ -193,7 +191,7 @@ const Hamburger = () => {
       onClick={() => setIsNavOpen((prev) => !prev)}
       ref={hamburgerMenuRef}
     >
-      <img src='/img/hamburger-menu.svg' className='size-full' />
+      <RxHamburgerMenu className='size-full' />
       {isNavOpen && (
         <div className='absolute left-0 -translate-x-1/2'>
           <ul className='flex flex-col justify-center gap-y-4 bg-black/40 backdrop-blur-md p-4 px-6'>
