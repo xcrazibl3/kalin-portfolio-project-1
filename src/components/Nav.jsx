@@ -5,8 +5,36 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 const Nav = () => {
+  const navAbsRef = useRef(null);
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: navAbsRef.current,
+        start: "top top",
+        end: "+=300",
+        scrub: true,
+      },
+    });
+    tl.to(navAbsRef.current, {
+      backgroundColor: "black",
+      duration: 1,
+    });
+    tl.to(navAbsRef.current, {
+      opacity: 0.6,
+      duration: 1,
+    });
+    tl.to(navAbsRef.current, {
+      opacity: 0,
+      y: "-70px",
+      duration: 0.5,
+    });
+  }, []);
+
   return (
-    <nav className='absolute top-3 w-screen p-4 px-6 text-white bg-transparent z-50 flex items-center justify-between'>
+    <nav
+      className='fixed top-3 w-screen p-4 px-6 text-white bg-transparent z-50 flex items-center justify-between'
+      ref={navAbsRef}
+    >
       <div className='flex gap-x-5'>
         <div className='h-10 overflow-hidden rounded-full'>
           <img src='/img/kai-ju.png' className='size-full' />
