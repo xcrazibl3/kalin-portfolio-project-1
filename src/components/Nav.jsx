@@ -5,7 +5,35 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 const Nav = () => {
+  const [curScroll, setCurScroll] = useState(0);
+  const [prevScroll, setPrevScroll] = useState(0);
+  const [isNavVisible, setIsNavVisible] = useState(true);
   const navAbsRef = useRef(null);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handlleScroll = () => {
+    if (window.scrollY > 350) {
+      setCurScroll(scrollY);
+      if (curScroll < prevScroll) {
+        setIsNavVisible(true);
+
+        console.log("Nav is visible");
+      }
+      if (curScroll > prevScroll) {
+        setIsNavVisible(false);
+        console.log("Nav is invisible");
+      }
+    }
+    setPrevScroll(() => curScroll);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handlleScroll);
+    return () => {
+      window.removeEventListener("scroll", handlleScroll);
+    };
+  }, [handlleScroll]);
+
   useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -29,6 +57,22 @@ const Nav = () => {
       duration: 0.5,
     });
   }, []);
+
+  useGSAP(() => {
+    gsap.set(navAbsRef.current, {
+      y: 0,
+    });
+    if (isNavVisible)
+      gsap.to(navAbsRef.current, {
+        opacity: 1,
+        duration: 0.5,
+      });
+    if (!isNavVisible)
+      gsap.to(navAbsRef.current, {
+        opacity: 0,
+        duration: 0.5,
+      });
+  }, [isNavVisible]);
 
   return (
     <nav
